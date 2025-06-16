@@ -45,17 +45,17 @@ function App() {
       alert("Please place at least 1 choice")
       return
     }
+    
     setIsSpinning(true)
 
     let interval = setInterval(() => {
-      let result = []
+
       let images = []
 
       for (let i = 0; i < 3; i++) {
         const randomIndex = Math.floor(Math.random() * choiceItems.length)
         const chosen = choiceItems[randomIndex]
 
-        result.push(chosen.id)
         images.push(chosen.imgSrc)
       }
 
@@ -90,7 +90,7 @@ function App() {
     if (matchedItems.length === 3) {
       setResultMessage("🎉 Congratulation! You matched all 3. Incredibly lucky!!!")
     } else if (matchedItems.length > 0) {
-      setResultMessage(`😮 So close! You matched ${matchedItems.length} item(s): ${matchedItems.join(', ')}`)
+      setResultMessage(`😮 So close! You matched ${matchedItems.length} item(s): ${matchedItems.join(', ').toUpperCase()}`)
     } else {
       setResultMessage("😢 Unlucky! You didn't match anything. ")
     }
