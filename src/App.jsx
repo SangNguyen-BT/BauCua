@@ -17,8 +17,8 @@ function App() {
   const [choiceItems, setChoiceItems] = useState(defaultItems);
   const [spinItems, setSpinItems] = useState(["bau.png", "bau.png", "bau.png"]);
   const [count, setCount] = useState(0)
-  const [isSpinning, setIsSpinning] = useState(false)
   const [chosenItems, setChosenItems] = useState([])
+  const [isSpinning, setIsSpinning] = useState(false)
   const [resultMessage, setResultMessage] = useState("")
 
   function increaseCount(index) {
@@ -27,9 +27,9 @@ function App() {
     const updated = [...choiceItems]
     updated[index].count++
 
+    setCount(prev => prev + 1)
     setChoiceItems(updated)
     setChosenItems(prev => [...prev, updated[index].id])
-    setCount(prev => prev + 1)
   }
 
   function reset() {
@@ -66,35 +66,41 @@ function App() {
       clearInterval(interval)
 
       const finalResult = []
-      const finalImages = []
 
       for (let i = 0; i < 3; i++) {
         const randomIndex = Math.floor(Math.random() * choiceItems.length)
         const chosen = choiceItems[randomIndex]
 
         finalResult.push(chosen.id)
-        finalImages.push(chosen.imgSrc)
       }
 
-      setSpinItems(finalImages)
       setIsSpinning(false)
       displayResult(finalResult)
     }, 3000)
   }
 
   function displayResult(result) {
-    const uniqueChoices = [...new Set(chosenItems)]
-
-    const matchedItems = uniqueChoices.filter(choice => result.includes(choice))
-
-    if (matchedItems.length === 3) {
-      setResultMessage("🎉 Congratulation! You matched all 3. Incredibly lucky!!!")
-    } else if (matchedItems.length > 0) {
-      setResultMessage(`😮 So close! You matched ${matchedItems.length} item(s): ${matchedItems.join(', ').toUpperCase()}`)
-    } else {
-      setResultMessage("😢 Unlucky! You didn't match anything. ")
-    }
+  const uniqueChoices = [...new Set(chosenItems)];
+  const allMatched = uniqueChoices.every(choice => result.includes(choice));
+  
+  if (allMatched && uniqueChoices.length === 3) {
+    setResultMessage("🎉 Congrats! You matched all three");
+    return;
   }
+
+  const chosenCounts = {};
+  chosenItems.forEach(item => chosenCounts[item] = (chosenCounts[item] || 0) + 1)
+
+  let resultString = "";
+
+  for (let item in chosenCounts) {
+    const name = item.charAt(0).toUpperCase() + item.slice(1)
+    resultString += `${name} ${chosenCounts[item]}, `
+  }
+  resultString = resultString.slice(0, -2)
+
+  setResultMessage(`😢 You placed wrong with the result: ${resultString}`);
+}
 
   return (
     <div className="max-w-[1280px] my-0 mx-auto">

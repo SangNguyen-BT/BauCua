@@ -9,7 +9,7 @@ const Body = (props) => {
             key={item.id}
             onClick={() => increaseCount(index)}
             disabled={disable}
-            className="relative h-[8rem] border border-black bg-white flex-grow flex-shrink-0 basis-auto transition duration-500 transform hover:scale-110 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="relative h-[8rem] border border-black bg-white transition duration-500 transform hover:scale-110 disabled:bg-gray-300 disabled:cursor-not-allowed"
           >
             <img
               src={`/${item.imgSrc}`}
