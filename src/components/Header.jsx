@@ -8,7 +8,7 @@ const Header = (props) => {
       <div className="text-center flex justify-center flex-wrap gap-3 mb-4">
         {spinItems.map((img, index) => {
           return (
-            <div key={index}>
+            <div key={index} className="bg-white">
               <img
                 src={`/${img}`}
                 alt={`img-${index}`}

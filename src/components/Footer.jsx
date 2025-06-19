@@ -7,8 +7,8 @@ const Footer = (props) => {
       <Button name="Reset" action={reset} disable={disable} />
       
       <div className="px-4">
-        <strong>Notice:</strong>
-        <strong>
+        <p className="font-bold">Notice:</p>
+        <div className="font-bold">
           <p>
             Click on the picture that you would like to place, total of number
             you can place is 3.
@@ -19,10 +19,10 @@ const Footer = (props) => {
           </p>
           <p>Match all 3 and you will pass (No need to be exact order)</p>
           <p>Good Luck!</p>
-        </strong>
+        </div>
 
-        <div className="text-center mt-7 text-red-600 text-lg">
-          <strong>{resultMessage}</strong>
+        <div className="text-center pt-3 text-red-600 text-lg font-bold">
+          <p>{resultMessage}</p>
         </div>
       </div>
     </>

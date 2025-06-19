@@ -103,8 +103,10 @@ function App() {
 }
 
   return (
-    <div className="max-w-[1280px] my-0 mx-auto">
-      <h1 className="text-center text-2xl font-bold my-7">
+    <div className="bg-gradient-to-r from-slate-400 to-red-400 min-h-screen">
+
+    <div className="max-w-[1280px] my-0 mx-auto ggFont">
+      <h1 className="text-center text-2xl font-bold py-7">
         Vietnamese Traditional Game: GOURD-CRAB-SHRIMP-FISH
       </h1>
       <h2 className="text-center text-lg font-extrabold mb-2 text-green-400">The Result here</h2>
@@ -112,6 +114,7 @@ function App() {
       <Header spinItems={spinItems} spin={spin} disable={isSpinning} />
       <Body choiceItems={choiceItems} increaseCount={increaseCount} disable={isSpinning} />
       <Footer reset={reset} disable={isSpinning} resultMessage={resultMessage}/>
+    </div>
     </div>
   );
 }
