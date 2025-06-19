@@ -80,26 +80,26 @@ function App() {
   }
 
   function displayResult(result) {
-  const uniqueChoices = [...new Set(chosenItems)];
-  const allMatched = uniqueChoices.every(choice => result.includes(choice));
+    const uniqueChoices = [...new Set(chosenItems)];
+    const allMatched = uniqueChoices.every(choice => result.includes(choice));
   
-  if (allMatched && uniqueChoices.length === 3) {
-    setResultMessage("🎉 Congrats! You matched all three");
-    return;
-  }
+    if (allMatched && uniqueChoices.length === 3) {
+      setResultMessage("🎉 Congrats! You matched all three");
+      return;
+    }
 
-  const chosenCounts = {};
-  chosenItems.forEach(item => chosenCounts[item] = (chosenCounts[item] || 0) + 1)
+    const chosenCounts = {};
+    chosenItems.forEach(item => chosenCounts[item] = (chosenCounts[item] || 0) + 1)
 
-  let resultString = "";
+    let resultString = "";
 
-  for (let item in chosenCounts) {
-    const name = item.charAt(0).toUpperCase() + item.slice(1)
-    resultString += `${name} ${chosenCounts[item]}, `
-  }
-  resultString = resultString.slice(0, -2)
+    for (let item in chosenCounts) {
+      const name = item.charAt(0).toUpperCase() + item.slice(1)
+      resultString += `${name} ${chosenCounts[item]}, `
+    }
+    resultString = resultString.slice(0, -2)
 
-  setResultMessage(`😢 You placed wrong with the result: ${resultString}`);
+    setResultMessage(`😢 You placed wrong with the result: ${resultString}`);
 }
 
   return (
